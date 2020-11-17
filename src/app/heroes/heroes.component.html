@@ -3,3 +3,11 @@
 <div><span>id: </span><strong>{{hero.id}} </strong></div>
 <!-- With pipe operator activating the built-in Uppercase format -->
 <div><span>name: </span><strong>{{hero.name | uppercase}}</strong></div>
+
+<div>
+    <label>name:
+        <!-- [(ngModel)] is two-way data binding syntax
+            to bind hero.name property to the textbox, and vice versa-->
+      <input [(ngModel)]="hero.name" placeholder="name"/>
+    </label>
+  </div>
