@@ -1,3 +1,10 @@
+<h2>My heroes</h2>
+<ul class="heroes">
+  <!-- iterating through the list of heroes with repeater directive -->
+  <li *ngFor='let hero of heroes' class="badge">{{hero.name}} , {{hero.id}}</li>
+
+</ul>
+
 <!--  binding data to the new hero property -->
 <h2><strong>{{hero.name}}</strong> details</h2>
 <div><span>id: </span><strong>{{hero.id}} </strong></div>
