@@ -1,6 +1,7 @@
 // new service imports the Angular Injectable symbol
 import { Injectable } from '@angular/core';
 import { Hero } from './hero';
+// import mock heroes array with ten heroes objects
 import { HEROES } from './mock-heroes';
 
 // class is annotated with the @Injectable() decorator providing metadata
