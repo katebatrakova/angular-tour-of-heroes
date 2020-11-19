@@ -1,15 +1,18 @@
 <!-- selectedHero details -->
-<!-- display if the selectedHero exists with  *ngIf directive. 
+<!-- display if the selectedHero exists with  *ngIf directive.
   If selectedHero (renamed to hero) value is falsey -  ngIf removes the hero detail from the DOM-->
   <div *ngIf='hero'>
     <!--  binding data to the new hero property -->
-  <h2>{{hero.name}} details</h2>
-  <div><span>id: </span><strong>{{hero.id}} </strong></div>
-  <!-- With pipe operator activating the built-in Uppercase format -->
-  <div><span>name: </span><strong>{{hero.name | uppercase}}</strong></div>
-    <label>name:
-        <!-- [(ngModel)] is two-way data binding syntax
-            to bind hero.name property to the textbox, and vice versa-->
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </label>
+  <h2> {{hero.name}} details</h2>
+   <div>
+     <span>id:</span> <strong>{{hero.id}} </strong>
   </div>
+  <!-- With pipe operator activating the built-in Uppercase format -->
+  <div>
+    <span>name: </span> <strong>{{hero.name | uppercase}} </strong></div>
+  <label> name:
+          <!-- [(ngModel)] is two-way data binding syntax
+              to bind hero.name property to the textbox, and vice versa-->
+      <input [(ngModel)]="hero.name" placeholder="name"/>
+      </label>
+    </div>
