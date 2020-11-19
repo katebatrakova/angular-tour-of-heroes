@@ -13,20 +13,29 @@ import { HEROES } from '../mock-heroes';
 })
 
 
-
 export class HeroesComponent implements OnInit {
-  //hero property of imported type Hero (interface created)
-  hero: Hero = {
-    name: 'Windstorm', id: 1
-  };
-  // bind component property  heroes with HEROES 
+  //before : hero property of imported type Hero (interface created)
+  // 
+  // hero: Hero = {
+  //   name: 'Windstorm', id: 1
+  // };
+
+  // no selected hero when the application starts
+  selectedHero: Hero;
+
+  // bind component property heroes with HEROES 
   heroes = HEROES;
+
+
+// assigns the clicked hero from the template to the component's selectedHero
+onSelect(hero: Hero): void { // : void is used because the method return nothing
+  this.selectedHero = hero;
+}
 
 
 
   constructor() { 
-    console.log(this.hero)
-
+    // console.log(this.hero)
   }
 
 

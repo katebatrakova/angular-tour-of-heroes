@@ -1,20 +1,29 @@
 <h2>My heroes</h2>
 <ul class="heroes">
   <!-- iterating through the list of heroes with repeater directive inside host element -->
-  <li *ngFor='let hero of heroes' class="badge">{{hero.name}} , {{hero.id}}</li>
-
+  <!-- event binding:user clicks onSelect(hero) method handler gets executed -->
+  <!-- class binding to add and remove a CSS class conditionally -->
+  <li *ngFor ='let hero of heroes'
+   class="badge"
+   (click)="onSelect(hero)"
+   [class.selected]='hero === selectedHero'> 
+    {{hero.name}} , {{hero.id}}
+   </li>
 </ul>
 
-<!--  binding data to the new hero property -->
-<h2><strong>{{hero.name}}</strong> details</h2>
-<div><span>id: </span><strong>{{hero.id}} </strong></div>
-<!-- With pipe operator activating the built-in Uppercase format -->
-<div><span>name: </span><strong>{{hero.name | uppercase}}</strong></div>
 
-<div>
-    <label>name:
-        <!-- [(ngModel)] is two-way data binding syntax
-            to bind hero.name property to the textbox, and vice versa-->
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </label>
-  </div>
+<!-- HeroDetailComponent  -->
+<!-- display if the selectedHero exists with  *ngIf directive. 
+  If selectedHero value is falsey -  ngIf removes the hero detail from the DOM-->
+<div *ngIf='selectedHero'>
+  <!--  binding data to the new hero property -->
+<h2>{{selectedHero.name}} details</h2>
+<div><span>id: </span><strong>{{selectedHero.id}} </strong></div>
+<!-- With pipe operator activating the built-in Uppercase format -->
+<div><span>name: </span><strong>{{selectedHero.name | uppercase}}</strong></div>
+  <label>name:
+      <!-- [(ngModel)] is two-way data binding syntax
+          to bind hero.name property to the textbox, and vice versa-->
+    <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+  </label>
+</div>
