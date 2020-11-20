@@ -47,9 +47,17 @@ onSelect(hero: Hero): void { // : void is used because the method return nothing
     this.getHeroes()
   }
 
-  // method to retrieve the heroes from the service
-  getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
-  }
+
+  // sync method to retrieve the heroes from the service
+  // getHeroes(): void { //synchronously!
+  //   this.heroes = this.heroService.getHeroes();
+  // }
+
+  // async version waits for the Observable to emit the array of heroes.
+    getHeroes(): void { // asynchronously!
+      this.heroService.getHeroes()
+          // The subscribe() method passes the emitted array to the callback, which sets the component's heroes property.
+          .subscribe(heroes => this.heroes = heroes);
+    }
 
 }
