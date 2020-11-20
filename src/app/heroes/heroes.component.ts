@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Hero} from '../hero'
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
+
 
 
 
@@ -25,17 +27,10 @@ export class HeroesComponent implements OnInit {
 // updated heroes property definition
   heroes: Hero[];
 
-
-// assigns the clicked hero from the template to the component's selectedHero
-onSelect(hero: Hero): void { // : void is used because the method return nothing
-  this.selectedHero = hero;
-}
-
-
-
   constructor(
     // Injected parameter defines a private heroService property and identifies it as a HeroService injection site
-    private heroService: HeroService
+    private heroService: HeroService,
+    private messageService: MessageService
   ) {
     // Commonly, the constructor shouldn't do anything.
     // Only for simple initialization such as wiring constructor parameters to properties
@@ -47,6 +42,12 @@ onSelect(hero: Hero): void { // : void is used because the method return nothing
     this.getHeroes()
   }
 
+// assigns the clicked hero from the template to the component's selectedHero
+  onSelect(hero: Hero): void { // : void is used because the method return nothing
+    this.selectedHero = hero;
+    // showing a history of the user's selections
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  }
 
   // sync method to retrieve the heroes from the service
   // getHeroes(): void { //synchronously!
@@ -54,10 +55,10 @@ onSelect(hero: Hero): void { // : void is used because the method return nothing
   // }
 
   // async version waits for the Observable to emit the array of heroes.
-    getHeroes(): void { // asynchronously!
-      this.heroService.getHeroes()
-          // The subscribe() method passes the emitted array to the callback, which sets the component's heroes property.
-          .subscribe(heroes => this.heroes = heroes);
-    }
+  getHeroes(): void { // asynchronously!
+    this.heroService.getHeroes()
+        // The subscribe() method passes the emitted array to the callback, which sets the component's heroes property.
+        .subscribe(heroes => this.heroes = heroes);
+  }
 
 }
