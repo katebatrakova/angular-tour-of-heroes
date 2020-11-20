@@ -1,9 +1,13 @@
 
 <!--  {{}} - interpolation binding syntax to present the title property value-->
 <h1>{{title}}</h1>
+<nav>
+  <!--  routerLink is the selector for the RouterLink directive that turns user clicks into router navigations -->
+  <a routerLink="/heroes">Heroes</a>
+  <a routerLink="/dashboard">Dashboard</a>
 
-
-<!-- display the HeroesComponent by adding its selector -->
-<app-heroes></app-heroes>
+</nav>
+<!-- <router-outlet> - router directive, tells the router where to display routed views -->
+<router-outlet></router-outlet>
 <app-messages></app-messages>
 
