@@ -3,16 +3,22 @@
   <!-- iterating through the list of heroes with repeater directive inside host element -->
   <!-- event binding:user clicks onSelect(hero) method handler gets executed -->
   <!-- class binding to add and remove a CSS class conditionally -->
-  <li *ngFor ='let hero of heroes'
+  <!-- <li *ngFor ='let hero of heroes'
    class="badge"
    (click)="onSelect(hero)"
-   [class.selected]='hero === selectedHero'> 
+   [class.selected]='hero === selectedHero'>
     {{hero.name}} , {{hero.id}}
-   </li>
+   </li> -->
+
+   <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+  </li>
 </ul>
 
 
 <!-- HeroDetailComponent  -->
 
 <!--  HeroesComponent.selectedHero binds to the element's hero property of the target element -->
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->

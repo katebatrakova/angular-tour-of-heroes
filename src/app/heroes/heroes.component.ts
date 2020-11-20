@@ -22,7 +22,7 @@ export class HeroesComponent implements OnInit {
   // };
 
   // no selected hero when the application starts
-  selectedHero: Hero;
+  // selectedHero: Hero;
 
 // updated heroes property definition
   heroes: Hero[];
@@ -30,7 +30,7 @@ export class HeroesComponent implements OnInit {
   constructor(
     // Injected parameter defines a private heroService property and identifies it as a HeroService injection site
     private heroService: HeroService,
-    private messageService: MessageService
+    // private messageService: MessageService
   ) {
     // Commonly, the constructor shouldn't do anything.
     // Only for simple initialization such as wiring constructor parameters to properties
@@ -43,11 +43,11 @@ export class HeroesComponent implements OnInit {
   }
 
 // assigns the clicked hero from the template to the component's selectedHero
-  onSelect(hero: Hero): void { // : void is used because the method return nothing
-    this.selectedHero = hero;
+  // onSelect(hero: Hero): void { // : void is used because the method return nothing
+    // this.selectedHero = hero;
     // showing a history of the user's selections
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  }
+  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  // }
 
   // sync method to retrieve the heroes from the service
   // getHeroes(): void { //synchronously!

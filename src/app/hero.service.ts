@@ -36,4 +36,10 @@ export class HeroService {
     return of(HEROES);
     // used to return a Hero[] - now returns an Observable<Hero[]>
   }
+
+  getHero(id: number): Observable<Hero> {
+    // TODO: send the message _after_ fetching the hero
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(HEROES.find(hero => hero.id === id));
+  }
 }
