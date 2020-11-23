@@ -8,10 +8,17 @@ import { FormsModule } from '@angular/forms';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component'; // <-- NgModel lives here
+// HttpClient is a mechanism for communicating with a remote server over HTTP
+import { HttpClientModule } from '@angular/common/http';
+// By using the In-memory Web API, you won't have to set up a server. Install the In-memory Web API package from npm
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
+
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
@@ -22,7 +29,14 @@ import { DashboardComponent } from './dashboard/dashboard.component'; // <-- NgM
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove for real server.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
