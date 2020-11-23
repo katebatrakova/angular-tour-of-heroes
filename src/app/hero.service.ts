@@ -29,6 +29,9 @@ export class HeroService {
   // collectionName is the heroes data object in the in-memory-data-service.ts
   private heroesUrl = 'api/heroes';  // URL to web api
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(
     private http: HttpClient,
@@ -48,6 +51,7 @@ export class HeroService {
     // applying the type specifier - <Hero[]>
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
+        // tap() operator looks at the observable values, does something with those values, and passes them along
         tap(_ => this.log('fetched heroes')),
         // catchError() operator intercepts an Observable that failed.
         catchError(this.handleError<Hero[]>('getHeroes', []))
@@ -65,6 +69,16 @@ export class HeroService {
           catchError(this.handleError<Hero>(`getHero id=${id}`))
   );
   }
+
+    /** PUT: update the hero on the server */
+  updateHero(hero: Hero): Observable<any> {
+      // put tkes 3 parameters:the URL, data to update, options
+      return this.http.put(this.heroesUrl, hero, this.httpOptions) //heroes web API knows which hero to update by looking at the hero's id
+            .pipe(
+            tap(_ => this.log(`updated hero id=${hero.id}`)),
+            catchError(this.handleError<any>('updateHero'))
+      );
+    }
 
   /**
  * Handle Http operation that failed.
